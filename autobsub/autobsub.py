@@ -15,7 +15,7 @@ from rich.progress import BarColumn, MofNCompleteColumn, Progress, TextColumn, T
 
 
 class LSFPool:
-    """A class for submitting jobs to Slurm."""
+    """A class for submitting jobs to LSF."""
 
     dir_path = ".autobsub"
 
@@ -288,7 +288,6 @@ class LSFPool:
         command = ["chmod", "755", script_path]
         _ = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
         command = f"bsub < {script_path}"
-        # command = ["bsub", "<", script_path]
         result = run(command, stdout=PIPE, stderr=PIPE, shell=True, text=True)
         job = result.stdout.split()[1]
         self.logger.info(f"Sumbitted Task: {job_name} to {node}, containing {len(cmds)} jobs. Job ID: {job}")

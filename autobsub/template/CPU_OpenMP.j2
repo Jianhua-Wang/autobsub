@@ -1,0 +1,19 @@
+#!/bin/bash
+#BSUB -J {{ job_name }}
+#BSUB -q {{ queue }}
+#BSUB -m {{ node }}
+#BSUB -n {{ cpus_per_task }}
+#BSUB -eo {{ log_dir }}/{{ job_name }}.err.log
+#BSUB -oo {{ log_dir }}/{{ job_name }}.out.log
+
+echo "Process will start at : "
+date
+echo "----------------------------------------"
+
+##############################
+{{ cmds }}
+##############################
+
+echo "========================================"
+echo "Process end at : "
+date
